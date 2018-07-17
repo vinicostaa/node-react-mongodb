@@ -4,7 +4,7 @@ const express = require("express"); //back end - node
 const app = express(); // represents route handlers
 
 app.get("/", (req, res) => {
-  res.send({ hi: "there" });
+  res.send({ hi: "deploy github integration" });
 });
 
 // process.env.PORT -> Server inject envivolments 
