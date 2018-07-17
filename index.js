@@ -3,7 +3,7 @@ const express = require("express"); //back end - node
 
 const app = express(); // represents route handlers
 
-app.get("/greeting", (req, res) => {
+app.get("/", (req, res) => {
   res.send({ hi: "there" });
 });
 
