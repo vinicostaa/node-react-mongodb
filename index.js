@@ -3,6 +3,9 @@ const express = require("express"); //back end - node
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
+
+console.log(process.env.PORT);
+
 const keys = require("./config/keys");
 const authRoutes = require("./routes/authRoutes");
 require("./models/User"); // creating model User in mongodb
