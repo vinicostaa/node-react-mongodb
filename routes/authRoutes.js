@@ -16,6 +16,7 @@ module.exports = app => {
   });
 
   app.get('/api/current_user', async (req, res) => {
+    console.log(process.env.PORT);
     res.send(req.user);
   });
 };
