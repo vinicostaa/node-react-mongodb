@@ -11,7 +11,7 @@ passport.serializeUser(async (user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   const user = await User.findById(id);
-  if(user) {
+  if (user) {
     done(null, user);
   }
 });
@@ -25,17 +25,14 @@ passport.use(
       proxy: true
     },
     async (acessToken, refreshToken, profile, done) => {
-      const user = await User.findOne({ googleId: profile.id });
-      if (user) {
-        // we already have a record with the given profile ID
-        done(null, user);
-      } else {
-        // we don't have a user record with this ID, make a new record
-        const user = await new User({ googleId: profile.id }).save();
-        if (user) {
-          done(null, user);
-        }
+      const ExistentUser = await User.findOne({ googleId: profile.id });
+
+      if (ExistentUser) {
+        return done(null, user);
       }
+
+      const user = await new User({ googleId: profile.id }).save();
+      done(null, user);
     }
   )
 );
