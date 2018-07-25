@@ -8,3 +8,11 @@ export const fetchUser = () => async dispath => {
     payload: user.data
   });
 };
+
+export const handleToken = token => async dispath => {
+  const user = await axios.post('/api/stripe', token);
+  dispath({
+    type: FETCH_USER,
+    payload: user.data
+  });
+};

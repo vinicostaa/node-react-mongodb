@@ -3,17 +3,16 @@ const express = require("express"); //back end - node
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
-
-
-
+const bodyParser = require('body-parser');
 const keys = require("./config/keys");
-const authRoutes = require("./routes/authRoutes");
 require("./models/User"); // creating model User in mongodb
 require("./services/passport"); // configuring passport authentication
 
 mongoose.connect(keys.mongoURI);
 
 const app = express(); // represents route handlers
+
+app.use(bodyParser.json());
 
 app.use(
   cookieSession({
@@ -24,9 +23,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-authRoutes(app); // passing app express for routes module
-// or
-//require("./routes/authRoutes")(app);
+require("./routes/authRoutes")(app);
+require("./routes/billingRoutes")(app);
 
 // process.env.PORT -> Server inject envivolments for example HEROKU
 const PORT = process.env.PORT || 5000;
