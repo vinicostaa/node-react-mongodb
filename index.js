@@ -1,7 +1,7 @@
 const express = require("express"); //back end - node
 // import express from 'express'; //front end - react
 const mongoose = require("mongoose");
-const cookieSession = require("cookie-session");
+const cookieSession = require("cookie-session"); // user session
 const passport = require("passport");
 const bodyParser = require('body-parser');
 const keys = require("./config/keys");
